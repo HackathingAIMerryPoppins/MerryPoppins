@@ -63,7 +63,7 @@ export function answerQuestion(req, res) {
     {
       responseType: 'json',
       headers:      { 'Ocp-Apim-Subscription-Key': 'affaf025b4114285ad506aadeecee4f5' },
-      timeout:      5000,
+      timeout:      30000,
     })
     .then(function (response) {
 
@@ -132,7 +132,8 @@ export function answerQuestion(req, res) {
         });
       }
 
-      // console.log('Latest cache:', cache);
+      console.log('Latest cache:');
+      console.log(cache);
     })
     .catch(function (error) {
       if (error.message.includes('timeout')) {
