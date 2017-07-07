@@ -4,17 +4,86 @@ import moment from 'moment';
 import { textToSSML } from './ssmlHelp';
 
 const cache = {
-  'child abuse': {
-    stationName: 'Janet Lansbury Podcast',
-    showName: 'TEDTalks Kids and Family - Stories from a home for terminally ill children',
-    audioURL: 'https://storageaudiobursts.blob.core.windows.net/audio/eed3e24c-25cf-4483-ad52-b7fb59832883_48.mp3',
-  },
-  'my child lying to me': {
-    stationName: 'Janet Lansbury Podcast',
-    showName: 'TEDTalks Kids and Family - How an old loop of railroads is changing the face of a city',
-    audioURL: 'https://storageaudiobursts.blob.core.windows.net/audio/2fc4c8da-0197-4e20-a1ca-b07e90d39b06_48.mp3',
-  },
+  'child abuse':
+    {
+      stationName: 'Janet Lansbury Podcast',
+      showName:    'TEDTalks Kids and Family - Stories from a home for terminally ill children',
+      audioURL:    'https://storageaudiobursts.blob.core.windows.net/audio/eed3e24c-25cf-4483-ad52-b7fb59832883_48.mp3'
+    },
+  'my child lying to me':
+    {
+      stationName: 'Janet Lansbury Podcast',
+      showName:    'TEDTalks Kids and Family - How an old loop of railroads is changing the face of a city',
+      audioURL:    'https://storageaudiobursts.blob.core.windows.net/audio/2fc4c8da-0197-4e20-a1ca-b07e90d39b06_48.mp3'
+    },
+  water:
+    {
+      stationName: 'Janet Lansbury Podcast',
+      showName:    'TEDTalks Kids and Family - A young scientists quest for clean water | Deepika Kurup',
+      audioURL:    'https://storageaudiobursts.blob.core.windows.net/audio/a156a83b-7815-4978-9d5c-99b1d4651432_48.mp3'
+    },
+  stupid:
+    {
+      stationName: 'Janet Lansbury Podcast',
+      showName:    'Teach Me To Talk with Laura and Friends - #313 Bilingualism and Language Delay in Toddlers',
+      audioURL:    'https://storageaudiobursts.blob.core.windows.net/audio/ebb9bf92-26cb-4c66-b57b-31eeead045f5_48.mp3'
+    },
+  'for love':
+    {
+      stationName: 'Janet Lansbury Podcast',
+      showName:    'Teach Me To Talk with Laura and Friends - #308 This Kid Doesnt Play! Solutions for Common Problems - Part 6 - Transitions',
+      audioURL:    'https://storageaudiobursts.blob.core.windows.net/audio/f3d0427d-20d7-45fa-ae34-dc106ed2a2d0_48.mp3'
+    },
+  love:
+    {
+      stationName: 'Janet Lansbury Podcast',
+      showName:    'Teach Me To Talk with Laura and Friends - #308 This Kid Doesnt Play! Solutions for Common Problems - Part 6 - Transitions',
+      audioURL:    'https://storageaudiobursts.blob.core.windows.net/audio/f3d0427d-20d7-45fa-ae34-dc106ed2a2d0_48.mp3'
+    },
+  language:
+    {
+      stationName: 'Janet Lansbury Podcast',
+      showName:    'Teach Me To Talk with Laura and Friends - #313 Bilingualism and Language Delay in Toddlers',
+      audioURL:    'https://storageaudiobursts.blob.core.windows.net/audio/ebb9bf92-26cb-4c66-b57b-31eeead045f5_48.mp3'
+    },
+  'stupid child':
+    {
+      stationName: 'Janet Lansbury Podcast',
+      showName:    'Teach Me To Talk with Laura and Friends - #313 Bilingualism and Language Delay in Toddlers',
+      audioURL:    'https://storageaudiobursts.blob.core.windows.net/audio/ebb9bf92-26cb-4c66-b57b-31eeead045f5_48.mp3'
+    },
+  'my kid':
+    {
+      stationName: 'Janet Lansbury Podcast',
+      showName:    'Teach Me To Talk with Laura and Friends - #310 This Kid Doesnt Play! Solutions for  Common Problems...Echolalia',
+      audioURL:    'https://storageaudiobursts.blob.core.windows.net/audio/3971ebef-a46c-4c38-94b7-66af9db1b5dc_48.mp3'
+    },
+  'my kid hitting other kids':
+    {
+      stationName: 'Janet Lansbury Podcast',
+      showName:    'Respectful Parenting: Janet Lansbury Unruffled - My Daughters Friend is a Bad Influence',
+      audioURL:    'https://storageaudiobursts.blob.core.windows.net/audio/fb9d6055-8287-41a0-ad78-c97fa6f69626_48.mp3'
+    },
+  lying:
+    {
+      stationName: 'Janet Lansbury Podcast',
+      showName:    'TEDTalks Kids and Family - Easy DIY projects for kid engineers | Fawn Qiu',
+      audioURL:    'https://storageaudiobursts.blob.core.windows.net/audio/91ed2704-c022-4b25-a4d6-ceb97670f941_48.mp3'
+    },
+  'learning a second language':
+    {
+      stationName: 'Janet Lansbury Podcast',
+      showName:    'TEDTalks Kids and Family - How to design a library that makes kids want to read  | Michael Bierut',
+      audioURL:    'https://storageaudiobursts.blob.core.windows.net/audio/24912b6f-50ca-4853-ab1c-35e398876ead_48.mp3'
+    },
+  cognitive:
+    {
+      stationName: 'Janet Lansbury Podcast',
+      showName:    'Teach Me To Talk with Laura and Friends - #311 - 7 Characteristics that Differentiate Autism from Other Language Delays',
+      audioURL:    'https://storageaudiobursts.blob.core.windows.net/audio/a3831815-2241-4750-bb16-b153a8e515c8_48.mp3'
+    }
 };
+
 
 export function answerQuestion(req, res) {
   const queryValue = decodeURIComponent(get(req.query, 'q', 'UNKNOWN QUERY STRING'));
@@ -39,7 +108,7 @@ export function answerQuestion(req, res) {
   const startTime = moment();
 
   const url = 'http://developersapi.audioburst.com/v1/freesearch?&q=' + queryValue + '&stationIds=12759&device=alexa&top=3';
-  console.log("Searching URL: ", url);
+  console.log('Searching URL: ', url);
 
   const fastResult = cache[queryValue];
   if (fastResult) {
@@ -94,10 +163,10 @@ export function answerQuestion(req, res) {
         //const answer = get(response.data, 'bursts[0].title', 'oopsie whoopsie');
         let answer = 'oh no!';
 
-        const title = get(response.data, 'value[0].title', '').replace("'", "");
-        const stationName = get(response.data, 'value[0].stationName', '').replace("'", "");
-        const showName = get(response.data, 'value[0].showName', '').replace("'", "");
-        const audioURL = get(response.data, 'value[0].audioURL', '').replace("'", "");
+        const title = get(response.data, 'value[0].title', '').replace('\'', '');
+        const stationName = get(response.data, 'value[0].stationName', '').replace('\'', '');
+        const showName = get(response.data, 'value[0].showName', '').replace('\'', '');
+        const audioURL = get(response.data, 'value[0].audioURL', '').replace('\'', '');
 
         cache[queryValue] = {
           stationName,
@@ -124,7 +193,7 @@ export function answerQuestion(req, res) {
 
         res.json(result);
       } catch (error) {
-        console.log("Uh oh. Error encountered inside. Error was: ", error.message);
+        console.log('Uh oh. Error encountered inside. Error was: ', error.message);
         res.json({
           userId:    '123',
           messageId: '324',
@@ -147,7 +216,7 @@ export function answerQuestion(req, res) {
 
       } else {
 
-        console.log("Error encountered: kill your child. Error was: ", error.message);
+        console.log('Error encountered: kill your child. Error was: ', error.message);
         res.json({
           userId:    '123',
           messageId: '324',
