@@ -99,7 +99,7 @@ function answer(req, res) {
   let speechLines;
 
   if (queryValue === '') {
-    speechLines = 'Oops, I couldn\'t hear your answer.';
+    speechLines = 'Oops, I, Merry Poppins, could not hear your answer.';
   } else {
     speechLines = `Your answer was:
     ${queryValue}`;

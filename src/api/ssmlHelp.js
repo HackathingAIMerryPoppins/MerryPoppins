@@ -14,6 +14,7 @@ export function textToSSML(speechLines = 'no text inputted', audioUrl = null) {
     }
 
     if (audioUrl && audioUrl != '') {
+      speech.say('Playing some sample audio: ');
       speech.audio(audioUrl);
     }
 
