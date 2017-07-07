@@ -6,10 +6,18 @@ export function textToSSML(speechLines = 'no text inputted', audioUrl = null) {
   try {
     const speech = new Speech();
 
+    if ((speechLines || '').trim().startsWith('http')) {
+      speech.audio(speechLines);
+      const ssmlResult = speech.ssml(false);
+
+      return ssmlResult;
+
+    }
+
     for (const line of speechLines.split('\n')) {
       if (line.trim() !== '') {
         speech.say(line.trim());
-        speech.pause('1s');
+        speech.pause('700ms');
       }
     }
 

@@ -5,9 +5,9 @@
 //cur step = welcome
 export function WelcomeOpen() {
   let answer = {};
-  answer.mes = `Congratulations! You’ve just unlocked the greatest kept secret for parents, your personal parenting assistant. 
-  I’m Mary Poppins. You can ask me parenting questions and I will help you find relevant information. 
-  Would you like me to take you through what I can do?`;
+  answer.mes = `Congratulations! You’ve just unlocked the best kept secret for parents, your personal parenting assistant. 
+  I’m Merry Poppins. You can ask me parenting questions and I will help you find relevant information. 
+  Would you like me to tell you what I can do?`;
   answer.step = 'welcomeEnd';
 
   return answer;
@@ -46,8 +46,11 @@ export function Answer(input, step) {
   }
   if (input == 'any other tip' || input == 'need another tip' || input == 'any other tips' ||
     input == 'give me an inspiration' || input == 'give me some inspiration' ||
-    input == 'give me inspiration' || input.contains(' tip')) {
-    answer.mes = '<audio src=\'https://s3-us-west-2.amazonaws.com/steinadi.com/spoon_full_of_sugar_Trimmed_compressed.mp3\' />';
+    input == 'give me inspiration' || input.includes(' tip') || input.includes(' inspiration')) {
+
+    console.log('Answer >> ', input, ' << caused: MUSIC');
+
+    answer.mes = 'https://s3-us-west-2.amazonaws.com/steinadi.com/spoon_full_of_sugar_Trimmed_compressed.mp3';
     answer.step = 'music';
     return answer;
   }
@@ -120,8 +123,8 @@ export function buildAnsGuideEndResponse(input) {
   let answer = {};
   switch (input) {
     case 'yes':
-      answer.mes = 'If you ever want to hear this tutorial again, just ask “Mary, what can you do?”' +
-        ' Or say "help".\nAlright, let’s get started. How can I help you?';
+      answer.mes = 'If you ever want to hear this tutorial again, just ask “what can you do?”' +
+        '\nAlright, let’s get started. How can I help you?';
       answer.step = 'waitForQuery';
       break;
     case 'no':
