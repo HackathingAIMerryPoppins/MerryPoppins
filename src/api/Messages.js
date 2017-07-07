@@ -44,7 +44,9 @@ export function Answer(input, step) {
     answer.step = 'Welcome';
     return answer;
   }
-  if (input == 'any other tip') {
+  if (input == 'any other tip' || input == 'need another tip' || input == 'any other tips' ||
+    input == 'give me an inspiration' || input == 'give me some inspiration' ||
+    input == 'give me inspiration' || input.contains(' tip')) {
     answer.mes = '<audio src=\'https://s3-us-west-2.amazonaws.com/steinadi.com/spoon_full_of_sugar_Trimmed_compressed.mp3\' />';
     answer.step = 'music';
     return answer;
