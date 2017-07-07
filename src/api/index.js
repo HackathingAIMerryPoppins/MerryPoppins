@@ -103,9 +103,12 @@ function query(req, res) {
 
 function answer(req, res) {
   const queryValue = decodeURIComponent(get(req.query, 'q', 'UNKNOWN QUERY STRING'));
-  let ans = Answer(step, queryValue);
+
+  console.log("Got answer from user: ", queryValue);
+  let ans = Answer(queryValue, step);
   step = ans.step;
 
+  console.log("Got result from bot: ", ans.mes);
   // let speechLines;
   //
   // if (queryValue === '') {

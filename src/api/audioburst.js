@@ -81,6 +81,36 @@ const cache = {
       stationName: 'Janet Lansbury Podcast',
       showName:    'Teach Me To Talk with Laura and Friends - #311 - 7 Characteristics that Differentiate Autism from Other Language Delays',
       audioURL:    'https://storageaudiobursts.blob.core.windows.net/audio/a3831815-2241-4750-bb16-b153a8e515c8_48.mp3'
+    },
+  'child child':
+    {
+      stationName: 'Janet Lansbury Podcast',
+      showName:    'Respectful Parenting: Janet Lansbury Unruffled - Help Me Stop Yelling at My Child',
+      audioURL:    'https://storageaudiobursts.blob.core.windows.net/audio/3e68ba44-8438-4273-9b7a-3fbe2c629a49_48.mp3'
+    },
+  child:
+    {
+      stationName: 'Janet Lansbury Podcast',
+      showName:    'Respectful Parenting: Janet Lansbury Unruffled - Help Me Stop Yelling at My Child',
+      audioURL:    'https://storageaudiobursts.blob.core.windows.net/audio/3e68ba44-8438-4273-9b7a-3fbe2c629a49_48.mp3'
+    },
+  'giving child medicine':
+    {
+      stationName: 'Janet Lansbury Podcast',
+      showName:    'Respectful Parenting: Janet Lansbury Unruffled - Helping Babies Take Their Medicine',
+      audioURL:    'https://storageaudiobursts.blob.core.windows.net/audio/daa3fa0f-7c28-4bc7-926a-e3cf094e5d6f_48.mp3'
+    },
+  'child medicine':
+    {
+      stationName: 'Janet Lansbury Podcast',
+      showName:    'Respectful Parenting: Janet Lansbury Unruffled - Helping Babies Take Their Medicine',
+      audioURL:    'https://storageaudiobursts.blob.core.windows.net/audio/daa3fa0f-7c28-4bc7-926a-e3cf094e5d6f_48.mp3'
+    },
+  'child protection':
+    {
+      stationName: 'Janet Lansbury Podcast',
+      showName:    'Respectful Parenting: Janet Lansbury Unruffled - No Tolerance for Bullying',
+      audioURL:    'https://storageaudiobursts.blob.core.windows.net/audio/617816dd-eb07-4c13-bece-384c2790a096_48.mp3'
     }
 };
 
