@@ -123,6 +123,18 @@ const cache = {
       stationName: 'Janet Lansbury Podcast',
       showName:    'Respectful Parenting: Janet Lansbury Unruffled - Helping Babies Take Their Medicine',
       audioURL:    'https://storageaudiobursts.blob.core.windows.net/audio/97c9bf70-7606-47d7-8811-ccd8193c21ae_48.mp3'
+    },
+  'my kid hitting another kid':
+    {
+      stationName: 'Janet Lansbury Podcast',
+      showName:    'Respectful Parenting: Janet Lansbury Unruffled - My Daughters Friend is a Bad Influence',
+      audioURL:    'https://storageaudiobursts.blob.core.windows.net/audio/d5344335-0858-41e4-9d76-3b250dee8d11_48.mp3'
+    },
+  'my kid using thing another kid':
+    {
+      stationName: 'Janet Lansbury Podcast',
+      showName:    'Teach Me To Talk with Laura and Friends - #311 - 7 Characteristics that Differentiate Autism from Other Language Delays',
+      audioURL:    'https://storageaudiobursts.blob.core.windows.net/audio/4e4f0818-2948-42de-86b6-b6f68e950c62_48.mp3'
     }
 };
 
