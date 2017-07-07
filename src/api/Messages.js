@@ -44,6 +44,11 @@ export function Answer(input, step) {
     answer.step = 'Welcome';
     return answer;
   }
+  if (input == 'any other tip') {
+    answer.mes = '<audio src=\'https://s3-us-west-2.amazonaws.com/steinadi.com/spoon_full_of_sugar_Trimmed_compressed.mp3\' />';
+    answer.step = 'music';
+    return answer;
+  }
 
   switch (step) {
     case 'welcomeEnd':
@@ -56,6 +61,8 @@ export function Answer(input, step) {
       answer.mes = 'How can I help you?';
       answer.step = 'waitForQuery';
       break;
+
+
     default:
       return welcomeEnd(input);
   }
@@ -134,7 +141,7 @@ export function buildWaitForQueryResponse() {
 
 
 function welcomeTestAllYes(req, res) {
-    console.log("\nStart All Yes Test:");
+  console.log('\nStart All Yes Test:');
   let ans = WelcomeOpen();
   step = ans.step;
   console.log('Mary: ', ans.mes);
@@ -143,33 +150,56 @@ function welcomeTestAllYes(req, res) {
   ans = Answer('yes', ans.step);
   console.log('Mary: ', ans.mes);
 
-    ans = Query('dogs');
+  ans = Query('dogs');
   console.log('Ans: ', ans.mes);
 
 }
 
 function welcomeTestNoGuide(req, res) {
-   console.log("\nStart No Guide Test:");
+  console.log('\nStart No Guide Test:');
   let ans = WelcomeOpen();
   step = ans.step;
   console.log('Mary: ', ans.mes);
+  ans = Answer('yes', ans.step);
+  console.log('Mary: ', ans.mes);
   ans = Answer('no', ans.step);
   console.log('Mary: ', ans.mes);
-    ans = Query('dogs');
+  ans = Query('dogs');
   console.log('Ans: ', ans.mes);
 
 }
 
-// function welcomeTestNoGuide(req, res) {
-//   let ans = WelcomeOpen();
-//   step = ans.step;
-//   console.log('Ans: ', ans.mes);
-//   ans = Answer('no', ans.step);
-//   console.log('Ans: ', ans.mes);
-//   ans = Query('dogs');
-//   console.log('Ans: ', ans.mes);
-//
-// }
+function welcomeTestRepeatGuide(req, res) {
+  console.log('\nStart Repeat Guide Test:');
+  let ans = WelcomeOpen();
+  step = ans.step;
+  console.log('Mary: ', ans.mes);
+  ans = Answer('yes', ans.step);
+  console.log('Mary: ', ans.mes);
+  ans = Answer('no', ans.step);
+  console.log('Mary: ', ans.mes);
+  ans = Answer('yes', ans.step);
+  console.log('Mary: ', ans.mes);
+  ans = Query('dogs');
+  console.log('Ans: ', ans.mes);
+
+}
+
+function welcomeTestDefaultAns(req, res) {
+  console.log('\nStart Default Ans Test:');
+  let ans = WelcomeOpen();
+  step = ans.step;
+  console.log('Mary: ', ans.mes);
+  ans = Answer('', ans.step);
+  console.log('Mary: ', ans.mes);
+  ans = Answer('no', ans.step);
+  console.log('Mary: ', ans.mes);
+  ans = Answer('yes', ans.step);
+  console.log('Mary: ', ans.mes);
+  ans = Query('dogs');
+  console.log('Ans: ', ans.mes);
+
+}
 
 
 function answer(req, res) {
@@ -183,8 +213,8 @@ let step;
 
 function test() {
   welcomeTestAllYes();
-    welcomeTestNoGuide();
-
+  welcomeTestNoGuide();
+  welcomeTestRepeatGuide();
 
 
 }
@@ -192,7 +222,7 @@ function test() {
 test();
 
 const allFuncs = {
-    WelcomeOpen,
-    buildWaitForQueryResponse,
+  WelcomeOpen,
+  buildWaitForQueryResponse,
 };
 // export default allFuncs;

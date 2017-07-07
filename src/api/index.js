@@ -9,7 +9,7 @@ import { Answer, Query, WelcomeOpen } from './Messages';
 
 import os from 'os';
 
-const useRemote = true; // (os.hostname() === 'alon-t540p');
+const useRemote = false; // (os.hostname() === 'alon-t540p');
 
 let step;
 
