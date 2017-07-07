@@ -1,13 +1,12 @@
 import { version } from '../../package.json';
 import { Router } from 'express';
 import get from 'lodash/get';
-// import facets from './facets';
-
-import Speech from 'ssml-builder';
 import axios from 'axios';
 import { textToSSML } from './ssmlHelp';
+import { answerQuestion } from './audioburst';
+// import facets from './facets';
 
-const useRemote = true;
+const useRemote = false;
 
 function remoteCall(req, res) {
   const url = `http://1b61772e.ngrok.io/api${req.path}_local?q=` + req.query.q;
@@ -51,18 +50,16 @@ function test(req, res) {
   res.json({
     'userId':    '1233243254354',
     'messageId': '324509873209482093842903423',
-    // 'SSML2':      `<speak><say-as interpret-as="spell-out">merry</say-as> the best app in the world!<say-as interpret-as="spell-out">poppins</say-as> use me once and you'll be sold!</speak>`,
     SSML:        textToSSML(speechLines)
   });
 }
 
 function welcome(req, res) {
-  const speechLines = `welcome welcome welcome`;
+  const speechLines = `Merry Poppins at your service.`;
 
   res.json({
     'userId':    '1233243254354',
     'messageId': '324509873209482093842903423',
-    // 'SSML2':      `<speak><say-as interpret-as="spell-out">merry</say-as> the best app in the world!<say-as interpret-as="spell-out">poppins</say-as> use me once and you'll be sold!</speak>`,
     SSML:        textToSSML(speechLines)
   });
 }
@@ -73,37 +70,48 @@ function help(req, res) {
   res.json({
     'userId':    '1233243254354',
     'messageId': '324509873209482093842903423',
-    // 'SSML2':      `<speak><say-as interpret-as="spell-out">merry</say-as> the best app in the world!<say-as interpret-as="spell-out">poppins</say-as> use me once and you'll be sold!</speak>`,
     SSML:        textToSSML(speechLines)
   });
 }
 
 
 function query(req, res) {
-  const queryValue = get(req.query, 'q', 'UNKNOWN QUERY STRING');
+  const queryValue = decodeURIComponent(get(req.query, 'q', 'UNKNOWN QUERY STRING'));
+  let speechLines;
 
-  const speechLines = `query is ${queryValue}`;
+  if (queryValue === '') {
+    speechLines = 'Oops, I couldn\'t hear your query.';
+  } else {
+    speechLines = `Your query was:
+    ${queryValue}`;
+  }
 
   res.json({
     'userId':    '1233243254354',
     'messageId': '324509873209482093842903423',
-    // 'SSML2':      `<speak><say-as interpret-as="spell-out">merry</say-as> the best app in the world!<say-as interpret-as="spell-out">poppins</say-as> use me once and you'll be sold!</speak>`,
     SSML:        textToSSML(speechLines)
   });
 }
 
 
 function answer(req, res) {
-  const queryValue = get(req.query, 'q', 'UNKNOWN QUERY STRING');
-  console.log('req.query:', req.query);
-  const speechLines = `answer is ${queryValue}`;
+  const queryValue = decodeURIComponent(get(req.query, 'q', 'UNKNOWN QUERY STRING'));
+  let speechLines;
 
-  res.json({
+  if (queryValue === '') {
+    speechLines = 'Oops, I couldn\'t hear your answer.';
+  } else {
+    speechLines = `Your answer was:
+    ${queryValue}`;
+  }
+
+  const responseJson = {
     'userId':    '1233243254354',
     'messageId': '324509873209482093842903423',
-    // 'SSML2':      `<speak><say-as interpret-as="spell-out">merry</say-as> the best app in the world!<say-as interpret-as="spell-out">poppins</say-as> use me once and you'll be sold!</speak>`,
     SSML:        textToSSML(speechLines)
-  });
+  };
+  console.log('responseJson:', responseJson);
+  res.json(responseJson);
 }
 
 
@@ -115,11 +123,11 @@ export default ({ config, db }) => {
 
 
   const apis = {
-    'test': test,
+    'test':    test,
     'welcome': welcome,
-    'help': help,
-    'query': query,
-    'answer': answer,
+    'help':    help,
+    'query':   answerQuestion, // query,
+    'answer':  answer,
   };
 
   for (const apiName of Object.keys(apis)) {
@@ -129,7 +137,7 @@ export default ({ config, db }) => {
       console.log(apiName + ' path:', req.path, 'qs:', req.query);
       if (useRemote) {
         return remoteCall(req, res);
-      } else  {
+      } else {
         return apiFunc(req, res);
       }
     });
