@@ -25,7 +25,7 @@ export function answerQuestion(req, res) {
 
   const startTime = moment();
 
-  const url = 'http://developersapi.audioburst.com/v1/freesearch?&q=' + queryValue + '&stationIds=12759&device=alexa';
+  const url = 'http://developersapi.audioburst.com/v1/freesearch?&q=' + queryValue + '&stationIds=12759&device=alexa&top=3';
   console.log("Searching URL: ", url);
   axios.get(
     //'http://developersapi.audioburst.com//v1/search?&q=' + queryValue + '&fromDate=1/1/2016&stationId=12386,12292,12759&device=alexa',
@@ -54,6 +54,7 @@ export function answerQuestion(req, res) {
       const title = get(response.data, 'value[0].title', '').replace("'", "");
       const stationName = get(response.data, 'value[0].stationName', '').replace("'", "");
       const showName = get(response.data, 'value[0].showName', '').replace("'", "");
+      const audioURL = get(response.data, 'value[0].audioURL', '').replace("'", "");
 
       if (title != '' && stationName != '' && showName != '') {
         answer = `You asked for help with ${queryValue}. I found a releveant podcast in the station ${stationName}, named, ${showName}`;
@@ -66,7 +67,7 @@ export function answerQuestion(req, res) {
       const result = {
         userId:    '123',
         messageId: '345',
-        SSML:      textToSSML(answer),
+        SSML:      textToSSML(answer, audioURL),
       };
 
       console.log('result is:', result);

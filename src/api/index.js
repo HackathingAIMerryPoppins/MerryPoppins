@@ -6,7 +6,7 @@ import { textToSSML } from './ssmlHelp';
 import { answerQuestion } from './audioburst';
 // import facets from './facets';
 
-const useRemote = false;
+const useRemote = true;
 
 function remoteCall(req, res) {
   const url = `http://1b61772e.ngrok.io/api${req.path}_local?q=` + req.query.q;

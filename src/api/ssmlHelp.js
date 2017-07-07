@@ -1,7 +1,7 @@
 import { version } from '../../package.json';
 import Speech from 'ssml-builder';
 
-export function textToSSML(speechLines = 'no text inputted') {
+export function textToSSML(speechLines = 'no text inputted', audioUrl = null) {
 
   try {
     const speech = new Speech();
@@ -11,6 +11,10 @@ export function textToSSML(speechLines = 'no text inputted') {
         speech.say(line.trim());
         speech.pause('1s');
       }
+    }
+
+    if (audioUrl && audioUrl != '') {
+      speech.audio(audioUrl);
     }
 
     //
