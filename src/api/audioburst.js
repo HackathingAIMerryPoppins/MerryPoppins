@@ -19,7 +19,7 @@ const cache = {
   water:
     {
       stationName: 'Janet Lansbury Podcast',
-      showName:    'TEDTalks Kids and Family - A young scientists quest for clean water | Deepika Kurup',
+      showName:    'TEDTalks Kids and Family - A young scientists quest for clean waterby Deepika Kurup',
       audioURL:    'https://storageaudiobursts.blob.core.windows.net/audio/a156a83b-7815-4978-9d5c-99b1d4651432_48.mp3'
     },
   stupid:
@@ -67,13 +67,13 @@ const cache = {
   lying:
     {
       stationName: 'Janet Lansbury Podcast',
-      showName:    'TEDTalks Kids and Family - Easy DIY projects for kid engineers | Fawn Qiu',
+      showName:    'TEDTalks Kids and Family - Easy DIY projects for kid engineersby Fawn Qiu',
       audioURL:    'https://storageaudiobursts.blob.core.windows.net/audio/91ed2704-c022-4b25-a4d6-ceb97670f941_48.mp3'
     },
   'learning a second language':
     {
       stationName: 'Janet Lansbury Podcast',
-      showName:    'TEDTalks Kids and Family - How to design a library that makes kids want to read  | Michael Bierut',
+      showName:    'TEDTalks Kids and Family - How to design a library that makes kids want to read by Michael Bierut',
       audioURL:    'https://storageaudiobursts.blob.core.windows.net/audio/24912b6f-50ca-4853-ab1c-35e398876ead_48.mp3'
     },
   cognitive:
