@@ -28,7 +28,7 @@ export function welcomeEnd(shouldActivateGuide) {
     default:
       answer.mes = 'Once I’m activated, you can ask me parenting questions, by saying “I need your help” and then saying your problem. ' +
         'Got it?';
-      answer.step = 'WelcomeOpen';
+      answer.step = 'GuideOpen';
       break;
   }
   return answer;
@@ -40,7 +40,7 @@ export function Answer(input, step) {
   let answer = {};
 
   if (input == '') {
-    answer.mes = 'Oops, I, Merry Poppins, could not hear your answer.';
+    answer.mes = 'Oops, I could\'nt understand your answer.';
     answer.step = 'Welcome';
     return answer;
   }
@@ -65,7 +65,7 @@ export function Answer(input, step) {
 export function Query(input) {
   let answer = {};
   if (input == '') {
-    answer.mes = 'Oops, I couldn\'t hear your query.';
+    answer.mes = 'Oops, I couldn\'t understand your question.';
   } else {
     answer.mes = 'Got it. Let me track that down for you';
   }
@@ -112,7 +112,7 @@ export function buildAnsGuideEndResponse(input) {
   switch (input) {
     case 'yes':
       answer.mes = 'If you ever want to hear this tutorial again, just ask “Mary, what can you do?”' +
-        ' Or say "help".\nAlright, let’s get started. How can I help you? For example: Alexa, help me with eating vegetables.';
+        ' Or say "help".\nAlright, let’s get started. How can I help you?';
       answer.step = 'waitForQuery';
       break;
     case 'no':
@@ -133,41 +133,43 @@ export function buildWaitForQueryResponse() {
 }
 
 
-function welcomeTest(req, res) {
+function welcomeTestAllYes(req, res) {
+    console.log("\nStart All Yes Test:");
   let ans = WelcomeOpen();
   step = ans.step;
-  console.log('Ans: ', ans.mes);
+  console.log('Mary: ', ans.mes);
   ans = Answer('yes', ans.step);
-  console.log('Ans: ', ans.mes);
-  ans = Answer('no', ans.step);
-  console.log('Ans: ', ans.mes);
-  ans = Answer('no', ans.step);
-  console.log('Ans: ', ans.mes);
-  ans = Answer('no', ans.step);
-  console.log('Ans: ', ans.mes);
-  ans = Answer('no', ans.step);
-  console.log('Ans: ', ans.mes);
-  ans = Answer('no', ans.step);
-  console.log('Ans: ', ans.mes);
-  ans = Answer('no', ans.step);
-  console.log('Ans: ', ans.mes);
+  console.log('Mary: ', ans.mes);
   ans = Answer('yes', ans.step);
-  console.log('Ans: ', ans.mes);
-  ans = Query('dogs');
+  console.log('Mary: ', ans.mes);
+
+    ans = Query('dogs');
   console.log('Ans: ', ans.mes);
 
 }
 
-function welcomeTest2(req, res) {
+function welcomeTestNoGuide(req, res) {
+   console.log("\nStart No Guide Test:");
   let ans = WelcomeOpen();
   step = ans.step;
-  console.log('Ans: ', ans.mes);
+  console.log('Mary: ', ans.mes);
   ans = Answer('no', ans.step);
-  console.log('Ans: ', ans.mes);
-  ans = Query('dogs');
+  console.log('Mary: ', ans.mes);
+    ans = Query('dogs');
   console.log('Ans: ', ans.mes);
 
 }
+
+// function welcomeTestNoGuide(req, res) {
+//   let ans = WelcomeOpen();
+//   step = ans.step;
+//   console.log('Ans: ', ans.mes);
+//   ans = Answer('no', ans.step);
+//   console.log('Ans: ', ans.mes);
+//   ans = Query('dogs');
+//   console.log('Ans: ', ans.mes);
+//
+// }
 
 
 function answer(req, res) {
@@ -180,14 +182,17 @@ function answer(req, res) {
 let step;
 
 function test() {
+  welcomeTestAllYes();
+    welcomeTestNoGuide();
 
-  welcomeTest2();
+
+
 }
 
 test();
 
-// const allFuncs = {
-//     WelcomeOpen,
-//     buildWaitForQueryResponse,
-// };
+const allFuncs = {
+    WelcomeOpen,
+    buildWaitForQueryResponse,
+};
 // export default allFuncs;
