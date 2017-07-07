@@ -111,7 +111,11 @@ const cache = {
       stationName: 'Janet Lansbury Podcast',
       showName:    'Respectful Parenting: Janet Lansbury Unruffled - No Tolerance for Bullying',
       audioURL:    'https://storageaudiobursts.blob.core.windows.net/audio/617816dd-eb07-4c13-bece-384c2790a096_48.mp3'
-    }
+    },
+  bilingualism:
+    { stationName: 'Janet Lansbury Podcast',
+      showName: 'Teach Me To Talk with Laura and Friends - #313 Bilingualism and Language Delay in Toddlers',
+      audioURL: 'https://storageaudiobursts.blob.core.windows.net/audio/44f95eca-905f-4335-abee-044f5b7b40cb_48.mp3' }
 };
 
 
