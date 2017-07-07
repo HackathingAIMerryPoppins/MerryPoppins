@@ -4,11 +4,14 @@ import get from 'lodash/get';
 import axios from 'axios';
 import { textToSSML } from './ssmlHelp';
 import { answerQuestion } from './audioburst';
+import { Answer, Query, WelcomeOpen } from './Messages';
 // import facets from './facets';
 
-import os from "os";
+import os from 'os';
 
-const useRemote = (os.hostname() === "alon-t540p");
+const useRemote = true; // (os.hostname() === 'alon-t540p');
+
+let step;
 
 function remoteCall(req, res) {
   const url = `http://1b61772e.ngrok.io/api${req.path}_local?q=` + req.query.q;
@@ -57,12 +60,12 @@ function test(req, res) {
 }
 
 function welcome(req, res) {
-  const speechLines = `Merry Poppins at your service.`;
-
+  let ans = WelcomeOpen();
+  step = ans.step;
   res.json({
     'userId':    '1233243254354',
     'messageId': '324509873209482093842903423',
-    SSML:        textToSSML(speechLines)
+    SSML:        textToSSML(ans.mes)
   });
 }
 
@@ -79,6 +82,8 @@ function help(req, res) {
 
 function query(req, res) {
   const queryValue = decodeURIComponent(get(req.query, 'q', 'UNKNOWN QUERY STRING'));
+  Query();
+
   let speechLines;
 
   if (queryValue === '') {
@@ -98,19 +103,22 @@ function query(req, res) {
 
 function answer(req, res) {
   const queryValue = decodeURIComponent(get(req.query, 'q', 'UNKNOWN QUERY STRING'));
-  let speechLines;
+  let ans = Answer(step, queryValue);
+  step = ans.step;
 
-  if (queryValue === '') {
-    speechLines = 'Oops, I, Merry Poppins, could not hear your answer.';
-  } else {
-    speechLines = `Your answer was:
-    ${queryValue}`;
-  }
+  // let speechLines;
+  //
+  // if (queryValue === '') {
+  //   speechLines = 'Oops, I, Merry Poppins, could not hear your answer.';
+  // } else {
+  //   speechLines = `Your answer was:
+  //   ${queryValue}`;
+  // }
 
   const responseJson = {
     'userId':    '1233243254354',
     'messageId': '324509873209482093842903423',
-    SSML:        textToSSML(speechLines)
+    SSML:        textToSSML(ans.mes)
   };
   console.log('responseJson:', responseJson);
   res.json(responseJson);
