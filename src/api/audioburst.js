@@ -138,6 +138,9 @@ const cache = {
     }
 };
 
+cache['child lying to me'] = cache['my child lying to me'];
+cache['kid hitting another kid'] = cache['my kid hitting another kid'];
+cache['kid hitting other kids'] = cache['my kid hitting other kids'];
 
 export function answerQuestion(req, res) {
   const queryValue = decodeURIComponent(get(req.query, 'q', 'UNKNOWN QUERY STRING'));
@@ -185,7 +188,7 @@ export function answerQuestion(req, res) {
     url,
     {
       responseType: 'json',
-      headers:      { 'Ocp-Apim-Subscription-Key': 'affaf025b4114285ad506aadeecee4f5' },
+      headers:      { 'Ocp-Apim-Subscription-Key': '0e4b6c99e0f94e98a473444c93109230' },
       timeout:      30000,
     })
     .then(function (response) {
